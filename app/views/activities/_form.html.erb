@@ -1,0 +1,19 @@
+<%= form_for(@activity_project, :url => @activity, :html => {:class => 'form'}) do |f| %>
+  <div class="group">
+    <label class="label">Basecamp Project</label> <%= @activity.category.account.app_path %>
+  </div>
+  <div class="group">
+    <label class="label">Hamster Activity</label> <%= @activity.name %>
+  </div>
+  <div class="group">
+    <%= f.label :project_id, t("activerecord.attributes.activity.project_id", :default => "Basecamp Project"), :class => :label %>
+    <%= f.select :project_id, @projects.collect{|p| [p.name, p.id]} %>
+  </div>
+
+  <div class="group navform wat-cf">
+    <button class="button" type="submit">
+      <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+    </button>  
+    <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}") + " " + t("web-app-theme.cancel", :default => "Cancel"), account_path(@activity.category.account), :class => "button" %> 
+  </div>
+<% end %>

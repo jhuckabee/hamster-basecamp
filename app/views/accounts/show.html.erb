@@ -1,0 +1,61 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", accounts_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_account_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", account_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.account.app_path", :default => t("activerecord.labels.app_path", :default => "App path")) %>:</b>
+          <%= @account.app_path %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.account.username", :default => t("activerecord.labels.username", :default => "Username")) %>:</b>
+          <%= @account.username %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.account.category_id", :default => t("activerecord.labels.category_id", :default => "Category")) %>:</b>
+          <%= @account.category.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.account.company_id", :default => t("activerecord.labels.company_id", :default => "Basecamp Company ID")) %>:</b>
+          <%= @account.company_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.account.user_id", :default => t("activerecord.labels.user_id", :default => "Basecamp User ID")) %>:</b>
+          <%= @account.user_id %>
+        </p>
+
+        <div class="wat-cf">
+          <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_account_path(@account), :class => "button" %> 
+          <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), account_path(@account), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+        </div>      
+
+        <h1>Activities</h1>
+        <table class="table">
+          <tr>
+            <th class="first">&nbsp;</th>
+            <th>Activity</th>
+            <th>Basecamp Project</th>
+            <th class="last"></th>
+          </tr>
+        <% @account.category.activities.each do |activity| %>
+          <tr>
+            <td>&nbsp;</td>
+            <td><%= link_to activity.name, activity_path(activity) %></td>
+            <td><%= activity.project_name %></td>
+            <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+          </tr>
+        <% end %>
+        </table>
+    </div>
+  </div>
+</div>

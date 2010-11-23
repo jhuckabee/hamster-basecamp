@@ -1,0 +1,47 @@
+<div class="block">
+  <div class="content">
+    <div class="inner">
+      <h2><%= @activity.name %></h2>
+
+      <h3>Time Entries</h3>
+      <%= form_tag(delete_time_entries_activity_path(@activity)) %>
+      <table class="table">
+        <tr>
+          <th class="first">&nbsp;</th>
+          <th>Activity</th>
+          <th>Time Entry Id</th>
+          <th>Todo Id</th>
+          <th>Time</th>
+          <th class="last right">Imported</th>
+        </tr>
+        <% 
+          total = 0
+          @activity.facts.each do |fact|
+            total += fact.hours -%>
+          <tr>
+            <td class="first"><%= check_box_tag("facts[#{fact.id}][selected]") %></td>
+            <td><%= fact.description %></td>
+            <td><%= fact.time_entry_id %></td>
+            <td><%= fact.todo_id %></td>
+            <td><%= formatted_number(fact.hours) %></td>
+            <td class="last right"><%= fact.time_entry.blank? ? 'n/a' : fact.time_entry.created_at %></td>
+          </tr>
+        <% end -%>
+        <tr>
+          <td class="first"></td>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td><%= formatted_number(total) %></td>
+          <td class="last right"></td>
+        </tr>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+          <%= submit_tag("Delete Time Entries", :class => 'button') %>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

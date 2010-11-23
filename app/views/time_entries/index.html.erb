@@ -1,0 +1,49 @@
+<div class="block">
+  <div class="content">          
+    <h2 class="title">Time Entries</h2>
+    <div class="inner">
+      <% if @facts.length == 0 -%>
+        <p><strong>No entries have been found to import</strong><p>
+      <% else -%>
+        <%= form_tag('/time_entries') %>
+        <table class="table">
+          <tr>
+            <th class="first">&nbsp</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Project</th>
+            <th class="minutes">Minutes</th>
+            <th class="hours">Hours</th>
+            <th class="last time_entry">Todo</th>
+          </tr>
+          <% @facts.each do |fact| -%>
+          <tr class="<%= cycle('even', 'odd') %>">
+            <td><%= check_box_tag("facts[#{fact.id}][selected]") %></td>
+            <td class="date"><%= fact.start_time.to_date %></td>
+            <td><%= fact.description %></td>
+            <td><%= fact.activity.project_name %></td>
+            <td class="minutes"><%= formatted_number(fact.minutes) %></td>
+            <td class="hours"><%= formatted_number(fact.hours) %></td>
+            <td class="todo"><%= select_tag "facts[#{fact.id}][todo_id]", grouped_todo_item_options(fact.activity.todos), :include_blank => true %></td>
+          </tr>
+          <% end -%>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="totals">Totals:</td>
+            <td class="minutes"><%= formatted_number(@facts.collect{|f| f.minutes}.sum) %></td>
+            <td class="hours"><%= formatted_number(@facts.collect{|f| f.hours}.sum) %></td>
+            <td class="todo"></td>
+          </tr>
+        </table>
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <div class="right"><%= submit_tag("Import", :class => 'button') %></div>
+            <%= submit_tag("Ignore", :class => 'button') %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

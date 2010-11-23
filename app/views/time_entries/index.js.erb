@@ -1,0 +1,4 @@
+[<%= @facts.collect do |f|<<EOM
+        {"fact":{"end_time":"#{f.end_time}","start_time":"#{f.start_time}","minutes":"#{f.minutes}","hours":"#{f.hours}","description":"#{f.description}","todos":"#{grouped_todo_items(f.activity.todos).to_json}"}}
+EOM
+end.collect{|x| x.strip}.join(",").html_safe %>]

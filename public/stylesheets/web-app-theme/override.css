@@ -1,0 +1,92 @@
+/* Override here any style defined by web-app-theme */
+div.actions { width: 100%; }
+div.right { float: right }
+
+table.table {
+  width: 100%; }
+table.table th {
+  text-align: left;
+  background-color: #ccc; }
+table.table tr th,
+table.table tr td {
+  padding: 3px }
+table.table tr.odd td{
+  background-color: #F5F5F5; }
+table.table tr td.date,
+table.table tr td.hours,
+table.table tr td.minutes {
+  width: 100px; }
+table.table tr th.hours,
+table.table tr th.minutes,
+table.table tr td.hours,
+table.table tr td.minutes,
+table.table tr td.totals {
+  text-align: right; }
+table.table tr td.todo {
+  width: 200px; }
+table.table tr td.todo select {
+  width: 200px; }
+table.table tr td.right,
+table.table tr th.right,
+table.table th.last,
+table.table tr th.last {
+  text-align: right; }
+
+/* Submit buttons */
+input.button {
+  color: #222;
+  display:block;
+  float:left;
+  margin:0 7px 0 0;
+  font-size: 1em;
+  line-height: 1.3em;
+  cursor:pointer;
+  text-decoration: none;
+  background-color: #f4f4f4;
+  background-image: url("themes/default/images/button-background.png");
+  border: 1px solid #c3c4ba;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: normal;
+  width:auto;
+  overflow:visible;
+  padding:4px 10px 3px 7px; /* IE6 */
+}
+input.button[type] {
+  padding:5px 10px 5px 7px; /* Firefox */
+  line-height:17px; /* Safari */
+}
+
+*:first-child+html input.button[type] {
+  padding:4px 10px 3px 7px; /* IE7 */
+}
+
+input.button img {
+  margin:0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+}
+
+input.button:hover {
+  background-color: #eee;
+  border: 1px solid #818171;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+input.button:active {
+  background-color:#e5e5e5;
+  outline: none;
+  font-weight: normal;
+  background-color: #f4f4f4;
+  background-image: url("themes/default/images/button-background-active.png");
+}
+
+/* Form */
+form.form div.highlighted {
+  padding: 5px;
+  background: #eee; }
+form.form div.highlighted label {
+  color: red; }

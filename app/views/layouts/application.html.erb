@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hamster Basecamp</title>
+  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => true %>
+  <%= javascript_include_tag 'jquery.min', 'rails', :cache => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">Hamster > Basecamp</a></h1>
+      <div id="main-navigation">
+        <ul class="wat-cf">
+          <%= content_tag(:li, link_to("Time Entries", root_path), :class => ['time_entries'].include?(controller.controller_name) ? 'active' : nil) %>
+          <%= content_tag(:li, link_to("Accounts", accounts_path), :class => ['accounts', 'activities'].include?(controller.controller_name) ? 'active' : nil) %>
+        </ul>
+      </div>
+    </div>    
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="main">
+        <%= yield %>
+        <div id="footer">
+          <div class="block">
+            <p>Free software</p>
+          </div>      
+        </div>
+      </div>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    </div>    
+  </div>
+</body>
+</html>
